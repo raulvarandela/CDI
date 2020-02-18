@@ -1,3 +1,3 @@
 # CDI
 
-diferentes proyectos de la asignatura de DCI
+diferentes proyectos de la asignatura de cdi
