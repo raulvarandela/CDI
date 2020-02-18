@@ -12,6 +12,6 @@ public class Prog9 {
         task.interrupt();//interrumpo
         System.out.printf("Main: Status of the Thread: %s\n", task.getState());//supongo que si el hilo está interrumpido
         System.out.printf("Main: isInterrupted: %s\n", task.isInterrupted());//seguirá vivo--> preguntar
-        System.out.printf("Main: isAlive: %s\n", task.isAlive());
+        System.out.printf("Main: isAlive: %s\n", task.isAlive()); //porque sigue vivo si  está interrumpido?
     }
 }

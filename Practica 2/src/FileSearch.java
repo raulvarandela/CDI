@@ -1,5 +1,5 @@
 import java.io.File;
-
+//ejemplo que como usar las interrupciones con try catch
 public class FileSearch implements Runnable {
     private String initPath;
     private String fileName;

@@ -5,14 +5,14 @@ class Prog8 {
         System.out.printf("Normal Priority: %s\n", Thread.NORM_PRIORITY);
         System.out.printf("Maximun Priority: %s\n", Thread.MAX_PRIORITY);
         Thread threads[]; //declaro un array de hilos
-        Thread.State status[]; //declaro un array con la prioridad?
+        Thread.State status[]; //declaro un array de prioridad
 
         // 10 threads do work, 5 with the max priority
         // 5 with the min priority
         threads = new Thread[10];//el tamaño van a ser 10 hilos
-        status = new Thread.State[10];// tamaño 10
+        status = new Thread.State[10];// tamaño 10, una prioridad por cada hilo
         for (int i = 0; i < 10; i++) {
-            threads[i] = new Thread(new Calculator());//en cada hilo voy a meter la calculadora
+            threads[i] = new Thread(new Calculator());//en cada hilo voy a meter la calculadora, o eso creo
             if ((i % 2) == 0) {//a los hilos pares van a tener máxima prioridad
                 threads[i].setPriority(Thread.MAX_PRIORITY);
             } else { //los hilos que no son pares, mínima prioridad
@@ -21,7 +21,7 @@ class Prog8 {
             threads[i].setName("My Thread " + i); //y le pongo un nombre
         }
         for (int i = 0; i < 10; i++) {
-            System.out.println("Main : Status of Thread " + i + " : " + threads[i].getState()); //muestro por pantalla los hilos
+            System.out.println("Main : Status of Thread " + i + " : " + threads[i].getState()); //muestro por pantalla los hilos , el estado
             status[i] = threads[i].getState(); // almaceno el estado de cada hilo en el array de status
         }
         for (int i = 0; i < 10; i++) {
