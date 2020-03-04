@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Prog7 {
+/*public class Prog7 {
     public static void main(String[] args) {
         final int NUMERO_THREADS = 32;
         List<Thread> threadList = new ArrayList<Thread>(NUMERO_THREADS);
@@ -26,10 +26,10 @@ public class Prog7 {
     }
 }
 
-class MyThread extends Thread {
+/*class MyThread extends Thread {
     @Override
     public void run() {
         System.out.println("Mi nombre es: " + this.getName());
         System.out.println("Finalizado el proceso " + this.getName());
     }
-}
+}*/
