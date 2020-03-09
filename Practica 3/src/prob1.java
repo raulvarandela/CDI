@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+//ejemplo en el que se comporta como quiero, el uso que se le deberia de dar sería con hilos locales
 public class prob1 {
     public static void main(String[] args) {
         final int NUMERO_THREADS = 3;

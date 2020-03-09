@@ -26,7 +26,7 @@ public class prob1b {
     }
 }
 
-class MiThread2 extends Thread {
+class MiThread2 extends Thread { //en este caso uso hilos locales
     //private Integer miSuma=0;
     private static ThreadLocal<Integer> miSuma = new ThreadLocal<Integer>() { //esto lo que me hace es que en cada hilo haya una variable local
         @Override protected Integer initialValue() {
