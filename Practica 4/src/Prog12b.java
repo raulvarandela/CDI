@@ -1,5 +1,4 @@
-class prob13 { //ejemplo de deathlock
-
+class prog12b {
     public static void main(String[] args) {
         FinTrans ft = new FinTrans();
         TransThread tt1 = new TransThread(ft, "Deposit Thread");
@@ -7,27 +6,25 @@ class prob13 { //ejemplo de deathlock
         tt1.start();
         tt2.start();
     }
-}
 
-class FinTrans {
-    public static String transName;
-    public static double amount;
-}
 
-class TransThread extends Thread {
-    private FinTrans ft;
-    private static String anotherSharedLock = "";
-
-    TransThread(FinTrans ft, String name) {
-        super(name); // Save thread's name
-        this.ft = ft; // Save reference to financial transaction object
+    static class FinTrans {
+        public static String transName;
+        public static double amount;
     }
 
-    public void run() {
-        for (int i = 0; i < 100; i++) {
-            if (getName().equals("Deposit Thread")) {
-                synchronized (ft) {
-                    synchronized (anotherSharedLock) {
+    static class TransThread extends Thread {
+        private FinTrans ft;
+
+        TransThread(FinTrans ft, String name) {
+            super(name); // Save thread's name
+            this.ft = ft; // Save reference to financial transaction object
+        }
+
+        public void run() {
+            for (int i = 0; i < 100; i++) {
+                if (getName().equals("Deposit Thread")) {
+                    synchronized (this) { //esto hace refencia al TransThread y no al FinTrans, por eso peta
                         ft.transName = "Deposit";
                         try {
                             Thread.sleep((int) (Math.random() * 1000));
@@ -36,10 +33,8 @@ class TransThread extends Thread {
                         ft.amount = 2000.0;
                         System.out.println(ft.transName + " " + ft.amount);
                     }
-                }
-            } else {
-                synchronized (anotherSharedLock) {
-                    synchronized (ft) {
+                } else {
+                    synchronized (this) {
                         ft.transName = "Withdrawal";
                         try {
                             Thread.sleep((int) (Math.random() * 1000));

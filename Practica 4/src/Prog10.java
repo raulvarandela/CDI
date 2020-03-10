@@ -1,5 +1,5 @@
 class prog10 {
-
+    //si que peta los hilos
     static class TransThread extends Thread {
         private FinTrans ft;
 
@@ -10,43 +10,40 @@ class prog10 {
 
         public void run() {
             for (int i = 0; i < 100; i++) {
-                if (getName().equals("Deposit")) {
-                    synchronized (ft) {
-                        ft.transName = "Deposit";
-                        try {
-                            Thread.sleep((int) (Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                        }
-                        ft.amount = 2000.0;
-                        System.out.println(ft.transName + " " + ft.amount);
+                if (getName().equals("Deposit")) {// Start of deposit thread's critical code section
+                    ft.transName = "Deposit";
+                    try {
+                        Thread.sleep((int) (Math.random() * 1000));
+                    } catch (InterruptedException e) {
                     }
-                } else {
-                    synchronized (ft) {
-                        ft.transName = "Withdrawal";
-                        try {
-                            Thread.sleep((int) (Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                        }
-                        ft.amount = 250.0;
-                        System.out.println(ft.transName + " " + ft.amount);
+                    ft.amount = 2000.0;
+                    System.out.println(ft.transName + " " + ft.amount);// End of deposit thread's critical code section
+                } else {// Start of withdrawal thread's critical code section
+                    ft.transName = "Withdrawal";
+                    try {
+                        Thread.sleep((int) (Math.random() * 1000));
+                    } catch (InterruptedException e) {
                     }
+                    ft.amount = 250.0;
+                    System.out.println(ft.transName + " " + ft.amount);// End of withdrawal thread's critical code section
                 }
             }
         }
     }
 
 
+
     public static void main(String[] args) {
         FinTrans ft = new FinTrans();
-        TransThread tt1 = new TransThread(ft, "Deposit");
+        TransThread tt1 = new TransThread(ft, "Deposit"); //en ambos casos es el mismo objeto
         TransThread tt2 = new TransThread(ft, "Withdrawal");
         tt1.start();
         tt2.start();
     }
 
 
-    static class FinTrans {
-        public static String transName;
-        public static double amount;
-    }
+static class FinTrans {
+    public static String transName;
+    public static double amount;
 }
+            }

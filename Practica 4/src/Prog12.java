@@ -8,42 +8,31 @@ class prog12 {
     }
 
     static class FinTrans {
-        public static String transName;
-        public static double amount;
+        private String transName;
+        private double amount;
+
+        synchronized void update(String transName, double amount) {
+            this.transName = transName;
+            this.amount = amount;
+            System.out.println(this.transName + " " + this.amount);
+        }
     }
 
     static class TransThread extends Thread {
         private FinTrans ft;
 
-        TransThread(FinTrans ft, String name) {
+        TransThread(FinTrans ft, String name) { //constructor
             super(name); // Save thread's name
             this.ft = ft; // Save reference to financial transaction object
         }
 
         public void run() {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 100; i++)
                 if (getName().equals("Deposit Thread")) {
-                    synchronized (this) {
-                        ft.transName = "Deposit";
-                        try {
-                            Thread.sleep((int) (Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                        }
-                        ft.amount = 2000.0;
-                        System.out.println(ft.transName + " " + ft.amount);
-                    }
+                    ft.update("Deposit", 2000.0); //se lo mando directamente al método
                 } else {
-                    synchronized (this) {
-                        ft.transName = "Withdrawal";
-                        try {
-                            Thread.sleep((int) (Math.random() * 1000));
-                        } catch (InterruptedException e) {
-                        }
-                        ft.amount = 250.0;
-                        System.out.println(ft.transName + " " + ft.amount);
-                    }
+                    ft.update("Withdrawal", 250.0);
                 }
-            }
         }
     }
 }

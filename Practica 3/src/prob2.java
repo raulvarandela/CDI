@@ -132,10 +132,10 @@ public class prob2 {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Matriz matriz = new Matriz(4);
+        Matriz matriz = new Matriz(1000);
         //matriz.SimpleFilter(matriz);
         matriz.Filter(matriz,2);
-        System.out.printf(matriz.toString());
+        //System.out.printf(matriz.toString());
 
     }
 }
