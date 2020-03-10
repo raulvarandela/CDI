@@ -3,6 +3,7 @@ import java.util.concurrent.TimeUnit;
 public class prob1c {
     static class MiThread3 extends Thread {
         private int pi = 0;
+        //private ThreadLocal<Integer> pi = new ThreadLocal<>();
         private boolean negative=true;
 
         @Override
