@@ -5,7 +5,8 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 
 public class P4parte2 {
-    public static void main(String args[]) {// creating buffer queue
+    public static void main(String args[]) {
+        // creating buffer queue
         Q q = new Q();
         // starting consumer thread
         new Consumer(q);
@@ -70,6 +71,7 @@ class Q {
         semCon.acquire();
         System.out.println("He eliminado el elemento: " + i);
         queue.remove(i);
+        Thread.sleep((int) 1000);
         semProd.release();
     }
 
@@ -78,6 +80,7 @@ class Q {
         semProd.acquire();
         System.out.println("He añadido el elemento: " + i);
         queue.add(i);
+        Thread.sleep((int) 1000);
         semCon.release();
     }
 
