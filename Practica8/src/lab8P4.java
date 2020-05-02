@@ -12,31 +12,7 @@ public class lab8P4 {
     }
 }
 
-class MySemaphore {
-    private int value;
 
-    public MySemaphore(int initialValue) {
-        value = initialValue;
-    }
-
-    public MySemaphore() {
-        this(0);
-    }
-
-    public void down() throws InterruptedException {
-        synchronized (this) {
-            while (value == 0) this.wait();
-            value--;
-        }
-    }
-
-    public void up() {
-        synchronized (this) {
-            value++;
-            this.notify();
-        }
-    }
-}
 
 class Producer implements Runnable {
     Q q;
@@ -107,3 +83,25 @@ class Q {
 
 }
 
+
+class MySemaphore {
+    private int value;
+
+    public MySemaphore(int initialValue) {
+        value = initialValue;
+    }
+
+    public MySemaphore() {
+        this(0);
+    }
+
+    synchronized public void up() {
+        value++;
+        notifyAll();
+    }
+
+    synchronized public void down() throws InterruptedException {
+        while (value == 0) wait();
+        value--;
+    }
+}
