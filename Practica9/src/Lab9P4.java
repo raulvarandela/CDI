@@ -18,7 +18,7 @@ public class Lab9P4 {
 
         es.shutdown();
 
-        es.execute(new factorial(r.nextInt(15)));
+
     }
 }
 
