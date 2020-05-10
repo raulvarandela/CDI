@@ -24,9 +24,9 @@ class Server extends Thread {
                 ois = new ObjectInputStream(socket.getInputStream());
                //String message = (String) ois.readObject();
                 Message recibido = (Message) ois.readObject();
-                System.out.println("paquete.Server Received: " + recibido.getMsg());
+                System.out.println("Server Received: " + recibido.getMsg());
                 oos = new ObjectOutputStream(socket.getOutputStream());
-                Message mensaje = new Message ("paquete.Server Reply",0);
+                Message mensaje = new Message ("Server Reply",0);
                 oos.writeObject(mensaje);
                 ois.close();
                 oos.close();
@@ -49,12 +49,12 @@ class Client extends Thread {
                 host = InetAddress.getLocalHost();
                 socket = new Socket(host.getHostName(), 4444);
                 oos = new ObjectOutputStream(socket.getOutputStream());
-                Message mensaje = new Message ("paquete.Client paquete.Message ",x);
+                Message mensaje = new Message ("Client Message ",x);
                 oos.writeObject(mensaje);
                 ois = new ObjectInputStream(socket.getInputStream());
                 Message recibido = (Message) ois.readObject();
                // String message = (String) ois.readObject();
-                System.out.println("paquete.Client Received: " + recibido.getMsg());
+                System.out.println("Client Received: " + recibido.getMsg());
                 ois.close();
                 oos.close();
                 socket.close();
